@@ -1,0 +1,4 @@
+homedir: /home/{{ username }}
+
+packages:
+  - default-mysql-client

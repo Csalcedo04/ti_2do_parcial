@@ -1,0 +1,14 @@
+services:
+  database:
+    container_name: 'database'
+    build: .
+    environment:
+      MYSQL_ROOT_PASSWORD: '123456'
+      MYSQL_DATABASE: 'appdb'
+    restart: always
+    network_mode: host
+    volumes:
+      - 'database:/var/lib/mysql'
+
+volumes:
+  database:

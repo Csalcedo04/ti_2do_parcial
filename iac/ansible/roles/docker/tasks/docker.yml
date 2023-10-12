@@ -1,0 +1,26 @@
+- name: Add Docker GPG apt Key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker Repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu jammy stable
+    state: present
+
+- name: Update apt and install docker-ce
+  apt:
+    name: docker-ce
+    state: latest
+    update_cache: true
+
+- name: Install Python modules for Docker
+  package:
+    name: "{{ packages }}"
+    state: latest
+
+- name: Add '{{ username }}' to docker group
+  user:
+    name: '{{ username }}'
+    groups: docker
+    append: yes

@@ -1,0 +1,4 @@
+- name: Copy sshd config file
+  copy:
+    src: ../files/ssh/20-force_publickey_auth.conf
+    dest: /etc/ssh/sshd_config.d

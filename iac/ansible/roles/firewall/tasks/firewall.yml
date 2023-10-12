@@ -1,0 +1,26 @@
+- name: Allow SSH from host IP
+  ufw:
+    rule: allow
+    port: 22
+    proto: tcp
+    src: 186.116.70.138
+
+- name: Allow MySQL from Web APP IP
+  ufw:
+    rule: allow
+    port: 3306
+    proto: tcp
+    src: "{{ item }}"
+  loop: "{{ ips }}"
+
+- name: Set firewall default policy
+  ufw:
+    state: enabled
+    policy: reject
+  become: true
+
+- name: Make sure ufw service is running
+  ansible.builtin.service:
+    name: ufw
+    state: started
+    enabled: true

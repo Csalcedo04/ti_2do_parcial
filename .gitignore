@@ -1,0 +1,8 @@
+.direnv/
+node_modules/
+package-lock.json
+.terraform*
+terraform.tfstate*
+secrets/
+*_cache/
+*.zip

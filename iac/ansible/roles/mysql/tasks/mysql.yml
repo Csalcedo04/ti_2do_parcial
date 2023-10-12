@@ -1,0 +1,13 @@
+- name: Install MySQL client and server
+  package:
+    name: "{{ packages }}"
+    state: latest
+
+- name: Copy remote files
+  copy:
+    src: ../files/mysql
+    dest: "{{ homedir }}"
+
+- name: Run `docker-compose up`
+  community.docker.docker_compose:
+    project_src: "{{ homedir }}/mysql"
